@@ -1,0 +1,27 @@
+services:
+  koib:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+      args:
+        SEARCH_PROFILE: "hybrid"  # lexical = SQLite FTS5 only, no Torch
+        EMBEDDING_MODEL: "intfloat/multilingual-e5-small"  # must match .env
+        BAKE_MODEL: "0"        # запечь модель в образ (офлайн-старт). 0 — качать при первом запуске.
+    image: koib-rag-server:5.0
+    container_name: koib-rag
+    restart: unless-stopped
+    env_file: ../.env
+    ports:
+      - "8000:8000"
+    volumes:
+      # Готовый индекс кладётся сюда (FAISS + BM25 + docstore)
+      - ../output:/app/output
+      # Hugging Face cache baked into image, not hidden by an empty volume.
+    # Лимит RAM намеренно не задан: настраивается оператором под инфраструктуру.
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+

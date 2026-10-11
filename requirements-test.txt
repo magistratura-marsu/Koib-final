@@ -1,0 +1,19 @@
+# Lightweight offline tests (no Torch, FAISS or LLM credentials needed).
+pytest>=8,<10
+httpx>=0.27,<1
+fastapi>=0.110,<1
+pydantic>=2.6,<3
+aiohttp>=3.9,<4
+numpy>=1.26,<3
+python-dotenv>=1,<2
+
+# Real document-format regression fixtures (not mocked parsers)
+pymupdf>=1.24,<2
+python-docx>=1.1,<2
+Pillow>=10,<13
+pytesseract>=0.3.10,<1
+opencv-python-headless>=4.8,<5
+openpyxl>=3.1,<4
+python-pptx>=0.6.23,<2
+beautifulsoup4>=4.12,<5
+lxml>=5,<7

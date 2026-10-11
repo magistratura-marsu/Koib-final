@@ -1,0 +1,26 @@
+name: KOIB CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Tesseract for scanned-PDF integration tests
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr tesseract-ocr-eng tesseract-ocr-rus
+      - name: Install test dependencies
+        run: python -m pip install -r requirements-test.txt
+      - name: Test
+        run: python -m pytest -q
+      - name: Verify Python syntax
+        run: python -m compileall -q api src tools
+      - name: Build deployable distributions
+        run: python make_apps.py --zip

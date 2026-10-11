@@ -1,0 +1,9 @@
+# Fast, light server when documents were indexed with KOIB_BUILD_VECTORS=false.
+# Uses SQLite FTS5 + DocStore, no Torch / FAISS / HuggingFace downloads.
+fastapi>=0.110,<1
+uvicorn[standard]>=0.29,<1
+pydantic>=2.6,<3
+aiohttp>=3.9,<4
+python-dotenv>=1,<2
+numpy>=1.26,<3
+# Optional for Russian lemmatization: pymorphy3>=2.0,<3

@@ -1,0 +1,15 @@
+**/__pycache__/
+**/*.pyc
+.venv/
+venv/
+.git/
+.env
+.env.*
+!.env.server.example
+!.env.indexer.example
+output/
+data/
+dist/
+.pytest_cache/
+.hf-cache/
+*.zip

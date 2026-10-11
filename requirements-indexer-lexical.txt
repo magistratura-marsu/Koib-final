@@ -1,0 +1,15 @@
+# Universal document parsing and SQLite FTS5 indexing without torch/FAISS.
+# Run with KOIB_BUILD_VECTORS=false in .env.
+python-dotenv>=1,<2
+numpy>=1.26,<3
+pymupdf>=1.24,<2
+python-docx>=1.1,<2
+Pillow>=10,<13
+pytesseract>=0.3.10,<1
+opencv-python-headless>=4.8,<5
+openpyxl>=3.1,<4
+python-pptx>=0.6.23,<2
+beautifulsoup4>=4.12,<5
+lxml>=5,<7
+pymorphy3>=2.0,<3
+pymorphy3-dicts-ru>=2.4
